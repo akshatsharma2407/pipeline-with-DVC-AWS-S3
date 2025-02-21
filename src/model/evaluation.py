@@ -87,7 +87,7 @@ def saving_metrics(path : str,metrics_dict: dict) -> None:
 def main() -> None:
     try:
         clf = load_model('models/model.pkl')
-        xtest,ytest = load_data('./data/processed/test_bow.csv')
+        xtest,ytest = load_data('./data/processed/test_tfidf.csv')
         ypred,ypred_proba = test(clf,xtest)
         metrics = evaluation(ypred,ytest,ypred_proba) 
         saving_metrics('metrics.json',metrics)

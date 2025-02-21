@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import yaml
 import logging
 
@@ -62,7 +62,7 @@ def train_test_split(train_data: pd.DataFrame,test_data: pd.DataFrame) -> tuple[
 
 def vectorizer(no_of_features: int,xtrain: np.ndarray,ytrain: np.ndarray,xtest: np.ndarray,ytest: np.ndarray) -> tuple[pd.DataFrame,pd.DataFrame]:
     try:
-        vectorizer = CountVectorizer(max_features=no_of_features)
+        vectorizer = TfidfVectorizer(max_features=no_of_features)
 
         # Fit the vectorizer on the training data and transform it
         X_train_bow = vectorizer.fit_transform(xtrain)
@@ -90,8 +90,8 @@ def save_file(train_df: pd.DataFrame,test_df: pd.DataFrame) -> None:
 
         os.makedirs(data_path)
 
-        train_df.to_csv(os.path.join(data_path,'train_bow.csv'))
-        test_df.to_csv(os.path.join(data_path,'test_bow.csv'))
+        train_df.to_csv(os.path.join(data_path,'train_tfidf.csv'))
+        test_df.to_csv(os.path.join(data_path,'test_tfidf.csv'))
         logger.debug('files saved successfully')
     except:
         logger.error('error in saving file')

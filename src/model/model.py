@@ -61,7 +61,7 @@ def save_model(model_path : str,clf : BaseEstimator) -> None:
 def main() -> None:
     try:
         params = load_params('params.yaml')
-        clf = model_building('./data/processed/train_bow.csv',params)
+        clf = model_building('./data/processed/train_tfidf.csv',params)
         save_model('models/model.pkl',clf)
         logger.debug('main file executed')
     except:
